@@ -15,12 +15,16 @@
 	colorlinks=true,
 ]{hyperref}
 \usepackage[a4paper,left=2cm,right=2cm]{geometry}
-
+% Pengaturan kutipan artikel
+\usepackage[style=ieee, backend=biber]{biblatex}
 %Code listing style pak akok
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Ubah sesuai modul
+\addbibresource{P1/pustaka/pustaka.bib}
 
 \lstdefinestyle{mystyle}{
 	backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
@@ -62,7 +66,7 @@
 \def\institut{Institut Teknologi Sepuluh Nopember}
 \def\praktikum{Praktikum \\ Jaringan Komputer}
 % Ubah Judul sesuai dengan modul
-\def\judul{Fungsi dan Rekursi}
+\def\judul{Wireless}
 \def\tahun{2024}
 \begin{document}
 % Ubah Bahasa sesuai dengan keinginan
@@ -74,4 +78,10 @@
 % \input{P3/ManajemenBandwith.tex}
 % \input{P4/VPN.tex}
 % \input{P5/IPv6.tex}
+
+
+\renewcommand\refname{Daftar Pustaka} % Menghilangkan kata "Daftar Pustaka"
+\renewcommand{\bibname}{} % Menghilangkan kata "Bibliography"
+
+\printbibliography
 \end{document}
