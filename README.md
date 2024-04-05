@@ -4,41 +4,15 @@
 
 ## Deskripsi
 
-Modul Praktikum Dasar Pemrograman ini dirancang untuk membantu mahasiswa memahami dasar-dasar pemrograman komputer. Modul ini mencakup konsep-konsep dasar pemrograman seperti variabel, tipe data, struktur kontrol, dan fungsi-fungsi dasar dalam bahasa pemrograman yang digunakan. Modul ini juga dilengkapi dengan latihan-latihan praktis untuk memastikan pemahaman konsep-konsep tersebut.
+Modul Praktikum Jaringan Komputer ini disusun untuk membantu mahasiswa memahami konsep dasar jaringan komputer dan teknologi informasi. Modul ini berisi materi-materi yang disampaikan dalam perkuliahan dan dilengkapi dengan latihan-latihan praktis yang harus dikerjakan oleh mahasiswa.
 
 ## Isi Modul
 
-1. **Pengenalan Bahasa C**
-   - Tujuan
-   - Mengenal Bahasa C
-   - IDE (Integrated Development Environment)
-   - Membuat proyek baru pada IDE Code::Blocks
-   - Struktur Bahasa Pemrograman C
-   - Tipe Data dan Variabel
-   - Output dan Input
-2. **Perulangan, Percabangan, Array, dan String**
-   - Tujuan
-   - Ekspresi Logika dan Perbandingan
-   - Percabangan
-   - Perulangan
-   - Array
-   - String
-3. **Fungsi dan Rekursi**
-   - Tujuan
-   - Fungsi
-   - Rekursi
-4. **Pointer,Struct, dan Algoritma**
-   - Tujuan
-   - Pointer
-   - Struct
-   - ALgoritma Sorting
-   - Algoritma Searching
-
-## Persyaratan
-
-- Laptop atau komputer dengan akses ke perangkat lunak pemrograman C/C++.
-- Meginstall IDE/Text Editor (disarankan _Codeblocks_ atau _Visual Studio Code_).
-- Koneksi internet (untuk referensi tambahan dan pemecahan masalah).
+1. **Wireless**
+2. **Routing Statis dan Dinamis**
+3. **Manajemen Bandwith**
+4. **Routing Statis dan Dinamis**
+5. **IPv6**
 
 ## Panduan Penggunaan
 
