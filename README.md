@@ -32,7 +32,7 @@ Modul Praktikum Dasar Pemrograman ini dilisensikan di bawah [lisensi MIT](LICENS
 
 ---
 
-Dengan menggunakan modul ini, kami harap Anda dapat memahami dasar-dasar pemrograman komputer dan menjadi pemrogram yang lebih mahir. Selamat belajar!
+Dengan menggunakan modul ini, kami harap Anda dapat memahamijaringan komputer. Selamat belajar!
 
 Jika Anda memiliki pertanyaan atau masukan, silakan hubungi admin
 
