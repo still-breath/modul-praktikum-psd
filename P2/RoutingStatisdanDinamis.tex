@@ -1,24 +1,141 @@
-\section{Tujuan}
-\begin{itemize}[label=$\bullet$, itemsep=-1pt, leftmargin=*]
-	\item Cek Halo
-\end{itemize}
+\section{Pendahuluan}
+\subsection{Latar Belakang}
+Pada modul ini, kita akan membahas konfigurasi routing static dan routing dinamis pada perangkat
+MikroTik. Routing merupakan proses pengiriman data antara dua atau lebih jaringan yang berbeda.
+Dalam modul ini, kita akan membahas konsep dasar routing, macam-macam routing statis dan
+dinamis, serta langkah-langkah untuk mengkonfigurasi kedua jenis routing ini pada perangkat
+MikroTik.\\\\
+Sebelum memulai pembahasan routing, penting untuk memahami konsep dasar jaringan dan
+subnetting. Jaringan terdiri dari sejumlah perangkat yang terhubung satu sama lain, seperti komputer,
+printer, dan perangkat jaringan lainnya. Setiap perangkat dalam jaringan memiliki alamat IP yang
+unik.\\\\
+Subnetting adalah proses pembagian jaringan menjadi subnet yang lebih kecil. Dengan subnetting, kita
+dapat mengoptimalkan penggunaan alamat IP dan membagi jaringan menjadi beberapa segmen yang
+terpisah.\\\\
+Dalam routing, terdapat yang namanya protokol routing. Protokol routing adalah aturan yang
+digunakan oleh perangkat jaringan untuk memilih jalur terbaik bagi pengiriman data antara jaringan
+yang berbeda. Ada dua jenis protokol routing utama: \textbf{routing static dan routing dinamis.}\\\\
 
-\section{Mengenal Jaringan}
-Halo halo
+\subsection{Maksud dan Tujuan}
+Mengetahui dan memahami konfigurasi routing static dan routing dinamis pada Mikrotik.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{P2/img/contoh.png}
-	\caption{Gambar Contoh}
-	\label{fig:gambarcontoh}
-\end{figure}
+\subsection{Hasil yang diharapkan}
+Dapat mengkonfigurasi konfigurasi routing static dan routing dinamis pada Mikrotik dengan
+tepat.
 
-\subsection{Tugas Pendahuluan}
+%===========================================================%
+\section{Tugas Pendahuluan}
 \begin{enumerate}
 	\item Halo
 \end{enumerate}
 
-
 \begin{center}
 	\colorbox{cyan!30}{\parbox{0.8\linewidth}{\textbf{Opsional:} Pelajari Git dan Github. Anda dapat memulai pembelajaran dari sumber berikut ini: \\ \href{https://github.com}{GitHub - https://github.com} \\ \href{https://git-scm.com/doc}{Git -https://git-scm.com/doc}}}
 \end{center}
+
+%===========================================================%
+\section{Alat dan Bahan}
+\begin{itemize}[label=$\bullet$, itemsep=-1pt, leftmargin=*]
+	\item 2 perangkat router mikrotik.
+	\item Aplikasi Winbox.
+	\item 3 kabel LAN
+\end{itemize}
+
+%===========================================================%
+\section{Jangka Waktu Pelaksanaan}
+Pemahaman dan konfigurasi 1 jam.
+
+%===========================================================%
+\section{Penjelasan dan Tahapan Konfigurasi}
+
+\subsection{Routing Statis}
+Pada routing statis, terdapat setidaknya 2 jenis, yaitu
+\begin{enumerate}
+	\item Default Route : digunakan ketika tidak ada rute spesifik yang cocok untuk tujuan pengiriman data. Jika tidak ada rute yang cocok, paket data akan dikirim melalui default route. Pada MikroTik, default route dinyatakan sebagai 0.0.0.0/0.
+	\item Static Route : adalah jenis routing di mana administrator jaringan secara manual mengonfigurasi tabel routing pada setiap perangkat jaringan. Dalam routing static, rute yang ditentukan secara manual digunakan untuk mengarahkan paket data ke tujuan yang ditentukan.
+\end{enumerate}
+Pada kesempatan kali ini, kita akan membuat routing jenis static route, Tahap awal kalian
+perlu membuat topologi dan konfigurasi IP Address nya sebagai berikut :\\
+===Gambar===\\Berikut penjelasan dan tahapan konfigurasinya.
+\begin{center}
+	\textbf{Konfigurasi Router1}
+\end{center}
+
+	\begin{enumerate}
+		\item Pertama kita login ke mikrotik dengan winbox
+		\item Setelah masuk ke winbox, kita masuk ke ip --> address lalu kita atur ipnya router 1 eth3, ip address 10.10.50.1/28, eth2, ip address 192.168.80.2/28
+		\item Lalu kita masuk ke ip --> route --> klik add(+), lalu pada Dst.Address isikan 172.16.2.0/24 (ip network client yang ada pada router2) dan pada gateway isikan 10.10.50.2 (ip yang terhubung dari router2 ke router1), klik apply --> ok
+		\item Jika sudah maka akan reachable eth3
+		\item Sekarang kita konfigurasi pada DHCP servernya untuk client yang akan terhubung
+		\item Kita coba untuk ping
+	\end{enumerate}
+\begin{center}
+	\textbf{Konfigurasi Router2}
+\end{center}
+	\begin{enumerate}
+		\item Seperti langkah diatas kita masuk dulu ke mikrotik dengan winbox
+		\item Setelah masuk kita masuk ke ip --> address lalu kita atur ipnya router 2 eth3, ip address 10.10.50.2/28 eth2, ip address 192.168.80.2/28
+		\item Lalu kita masuk ke ip --> route --> klik add(+), lalu pada Dst.Address isikan 192.168.80.0/28 (ip network client yang ada pada router1) dan pada gateway isikan 10.10.50.1 (ip yang terhubung dari router1 ke router2), klik apply --> ok
+		\item Jika sudah maka akan reachable eth3
+		\item Sekarang kita konfigurasi pada DHCP servernya untuk client yang akan terhubung
+		\item Kita coba ping ke router1
+		\item Tahap terakhir atau penugasan, setting IP Address pada PC client router1 dan router2, kemudian PING IP dari PC router2 ke PC Router2, pastikan berhasil dan lampirkan dalam laporan.
+	\end{enumerate}
+
+\subsection{Routing Dinamis}
+Pada routing dinamis, terdapat setidaknya 3 jenis, yaitu
+\begin{enumerate}
+	\item Routing Information Protocol (RIP) RIP adalah salah satu protokol routing dinamis yang menggunakan metrik hop count (jumlah hop) untuk menentukan jalur terbaik. Metrik hop count mengukur jarak antara router pengirim dengan tujuan dalam jumlah hop (melalui berapa banyak router).
+	\item Open Shortest Path First (OSPF) OSPF adalah protokol routing dinamis yang menggunakan algoritma Dijkstra untuk menentukan jalur terpendek. OSPF mengumpulkan informasi topologi dari semua router dalam jaringan dan menghitung jalur terbaik berdasarkan bobot (cost) setiap link.
+	\item Border Gateway Protocol (BGP) BGP adalah protokol routing eksternal yang digunakan di Internet. BGP memungkinkan router di AS (Autonomous System) yang berbeda untuk berkomunikasi dan menukar informasi routing.
+\end{enumerate}
+Pada kesempatan kali ini, kita akan membuat routing jenis static route, Tahap awal kalian perlu membuat topologi dan konfigurasi IP Address nya sebagai berikut :\\
+===Gambar===\\Penjelasan dan tahapan konfigurasi sebagai berikut :
+
+\begin{center}
+	\textbf{Konfigurasi Router1}
+\end{center}
+\begin{enumerate}
+	\item Pertama kita buka winbox, lalu buat IP Address klik \textbf{IP > Address.}
+	\item Lalu kita membuat IP Address yang menghubungkan interface router 1 dan router 2, pada konfigurasi ini saya menggunakan interface ether2 sebagai penghubungnya. $\Rightarrow$ \textbf{Address : 172.160.8.1/24 > Interface :} (biarkan kosong) > \textbf{Interface : ether.}
+	\item Langkah selanjutnya kita mengatur IP Address yang terhubung dengan laptop. $\Rightarrow$ \textbf{Address : 192.168.10.1/24 > Interface : ether3 > Apply > Ok.}
+	\item Selanjutnya kita klik \textbf{Routing > RIP.}
+	\item Klik tab \textbf{Interfaces > Add > Interface : ether2} (interface yang menghubungkan antar router) \textbf{> receive : v1 > send : v1 > Apply > Ok.}
+	\item Langkah selanjutnya memasukan semua IP Network ether2 dan ether3. $\Rightarrow$ klik tab \textbf{Networks > Add > Address : 172.160.8.0/24 > Ok.}
+	\item Klik \textbf{Network > Add > Address : 192.160.10.0/24 > Ok.}
+	\item Selanjutnya kita klik tab Neighbours, disini kita memasukan alamat IP tujuan router lawan. Klik \textbf{Add > Address : 172.160.8.2 > Ok.}
+	\item Setelah konfigurasi router 1 selesai, selanjutnya kita konfigurasi IP laptop. $\Rightarrow$ \textbf{Address : 192.168.10.2 > Netmask : 255.255.255.0 > Gateway : 192.168.10.1.}
+\end{enumerate}
+
+\begin{center}
+	\textbf{Konfigurasi Router2}
+\end{center}
+\begin{enumerate}
+	\item Pertama kita buka winbox, lalu buat IP Address klik \textbf{IP > Address.}
+	\item Lalu kita membuat IP Address yang menghubungkan interface router 1 dan router 2, pada konfigurasi ini saya menggunakan interface ether2 sebagai penghubungnya $\Rightarrow$ \textbf{Address : 172.160.8.2/24 > Interface : ether2 > Apply > Ok.}
+	\item Langkah selanjutnya kita mengatur IP Address yang terhubung dengan laptop. $\Rightarrow$ \textbf{Address : 192.168.20.2/24 > Interface : ether3 > Apply > Ok.}
+	\item Selanjutnya kita klik \textbf{Routing > RIP.}
+	\item Klik tab \textbf{Interfaces > Add > Interface : ether2} (interface yang menghubungkan antar router) \textbf{> receive : v1 > send : v1 > Apply > Ok.}
+	\item Langkah selanjutnya memasukan semua IP Network ether2 dan ether3 $\Rightarrow$ klik tab \textbf{Networks > Add > Address : 172.160.8.0/24 > Ok.}
+	\item $\Rightarrow$ \textbf{Klik Network > Add > Address : 192.160.20.0/24 > Ok.}
+	\item Selanjutnya kita klik tab Neighbours, disini kita memasukan alamat IP tujuan router lawan. Klik \textbf{Add > Address : 172.160.8.1 > Ok.}
+	\item Setelah konfigurasi router 1 selesai, selanjutnya kita konfigurasi IP laptop. $\Rightarrow$ \textbf{Address : 192.168.20.3 > Netmask : 255.255.255.0 > Gateway : 192.168.20.2.}
+\end{enumerate}
+
+\begin{center}
+	\textbf{Pengujian Konfigurasi}
+\end{center}
+Untuk mengetes apakah konfigurasi telah berhasil atau belum dapat dilakukan dengan melakukan ping masing - masing IP Address laptop lawan.\\
+==Gambar==\\==Gambar==\\
+Apabila masing - masing Laptop mendapatkan jawaban selamat konfigurasi berhasil.
+
+%===========================================================%
+\section{Hasil yang didapat}
+Memahami dan mengkonfigurasi routing dinamis RIP dengan tepat.
+
+%===========================================================%
+\section{Kesimpulan}
+Dalam mengkonfigurasi routing RIP, diperlukan pemahaman dasar mengenai setting IP Address dan Subnetting, dan juga diperlukan ketelitian dan fokus agar berhasil
+
+\cite{Newton1687}.
+
