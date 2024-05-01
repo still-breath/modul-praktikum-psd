@@ -26,7 +26,9 @@ tepat.
 %===========================================================%
 \section{Tugas Pendahuluan}
 \begin{enumerate}
-	\item Halo
+	\item Buatlah topologi jaringan percobaan 1, 2, dan 3!
+	\item Perbedaan Static Routing dan Dynamic Routing.
+	\item Keuntungan dan kekurangan Static Routing dan Dynamic Routing
 \end{enumerate}
 
 \begin{center}
@@ -48,15 +50,14 @@ Pemahaman dan konfigurasi 1 jam.
 %===========================================================%
 \section{Penjelasan dan Tahapan Konfigurasi}
 
+%======================PERCOBAAN 1==========================%
 \subsection{Routing Statis}
 Pada routing statis, terdapat setidaknya 2 jenis, yaitu
 \begin{enumerate}
 	\item Default Route : digunakan ketika tidak ada rute spesifik yang cocok untuk tujuan pengiriman data. Jika tidak ada rute yang cocok, paket data akan dikirim melalui default route. Pada MikroTik, default route dinyatakan sebagai 0.0.0.0/0.
 	\item Static Route : adalah jenis routing di mana administrator jaringan secara manual mengonfigurasi tabel routing pada setiap perangkat jaringan. Dalam routing static, rute yang ditentukan secara manual digunakan untuk mengarahkan paket data ke tujuan yang ditentukan.
 \end{enumerate}
-Pada kesempatan kali ini, kita akan membuat routing jenis static route, Tahap awal kalian
-perlu membuat topologi dan konfigurasi IP Address nya sebagai berikut :\\
-===Gambar===\\Berikut penjelasan dan tahapan konfigurasinya.
+
 \begin{center}
 	\textbf{Konfigurasi Router 1}
 	\begin{enumerate}
@@ -109,7 +110,7 @@ perlu membuat topologi dan konfigurasi IP Address nya sebagai berikut :\\
 		\end{figure}
 	\end{enumerate}
 
-	\textbf{Mengecek keberhasilan konfigurasi}
+	\textbf{Pengujian konfigurasi}
 	\begin{enumerate}
 		\item Lakukan tes ping ke Router 2 melalui PC 1
 		\begin{figure}[H]
@@ -128,6 +129,7 @@ perlu membuat topologi dan konfigurasi IP Address nya sebagai berikut :\\
 	\end{enumerate}
 \end{center}
 
+%======================PERCOBAAN 2==========================%
 \subsection{Routing Dinamis}
 Pada routing dinamis, terdapat setidaknya 3 jenis, yaitu
 \begin{enumerate}
@@ -135,8 +137,6 @@ Pada routing dinamis, terdapat setidaknya 3 jenis, yaitu
 	\item Open Shortest Path First (OSPF) OSPF adalah protokol routing dinamis yang menggunakan algoritma Dijkstra untuk menentukan jalur terpendek. OSPF mengumpulkan informasi topologi dari semua router dalam jaringan dan menghitung jalur terbaik berdasarkan bobot (cost) setiap link.
 	\item Border Gateway Protocol (BGP) BGP adalah protokol routing eksternal yang digunakan di Internet. BGP memungkinkan router di AS (Autonomous System) yang berbeda untuk berkomunikasi dan menukar informasi routing.
 \end{enumerate}
-Pada kesempatan kali ini, kita akan membuat routing jenis static route, Tahap awal kalian perlu membuat topologi dan konfigurasi IP Address nya sebagai berikut :\\
-===Gambar===\\Penjelasan dan tahapan konfigurasi sebagai berikut :
 
 \begin{center}
 	\textbf{Konfigurasi Router 1}
