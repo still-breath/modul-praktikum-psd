@@ -14,7 +14,7 @@ dapat mengoptimalkan penggunaan alamat IP dan membagi jaringan menjadi beberapa 
 terpisah.\\\\
 Dalam routing, terdapat yang namanya protokol routing. Protokol routing adalah aturan yang
 digunakan oleh perangkat jaringan untuk memilih jalur terbaik bagi pengiriman data antara jaringan
-yang berbeda. Ada dua jenis protokol routing utama: \textbf{routing static dan routing dinamis.}\\\\
+yang berbeda. Ada dua jenis protokol routing utama: \textbf{routing static dan routing dinamis.}
 
 \subsection{Maksud dan Tujuan}
 Mengetahui dan memahami konfigurasi routing static dan routing dinamis pada Mikrotik.
@@ -58,29 +58,75 @@ Pada kesempatan kali ini, kita akan membuat routing jenis static route, Tahap aw
 perlu membuat topologi dan konfigurasi IP Address nya sebagai berikut :\\
 ===Gambar===\\Berikut penjelasan dan tahapan konfigurasinya.
 \begin{center}
-	\textbf{Konfigurasi Router1}
-\end{center}
+	\textbf{Konfigurasi Router 1}
+	\begin{enumerate}
+		\item Buka aplikasi WinBox pada PC 1 dan lakukan koneksi ke Router 1. Neighbors > Refresh > Double click Router yang terdeteksi > Connect
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth]{P2/img/per1/pc1/Step 1.png}
+			\caption{Step 1}
+			\label{fig:Step 1(Per.1 PC1)}
+		\end{figure}
+		\item Berikan IP address pada interface ether2 dan ether 4 yang dapat dibuat pada tab IP > Addresses. Berikan IP address sesuai dengan cara pengaturan IP address yang benar. Berikan IP address yang berbeda dengan contoh di modul.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per1/pc1/Step 2.png}
+			\caption{Step 2}
+			\label{fig:Step 2(Per.1 PC1)}
+		\end{figure}
+		\item Lakukan routing statis. Buka pada tab IP > Routes, lalu tambahkan jaringan. 
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per1/pc1/Step 3.1.png}
+			\caption{Step 3.1}
+			\label{fig:Step 3.1(Per.1 PC1)}
+		\end{figure}
+		Masukkan alamat jaringan yang ingin dituju, melalui alamat Gateway pada router 2
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per1/pc1/Step 3.2.png}
+			\caption{Step 3.2}
+			\label{fig:Step 3.2(Per.1 PC1)}
+		\end{figure}
+	\end{enumerate}
 
+	\textbf{Konfigurasi Router 2}
 	\begin{enumerate}
-		\item Pertama kita login ke mikrotik dengan winbox
-		\item Setelah masuk ke winbox, kita masuk ke ip --> address lalu kita atur ipnya router 1 eth3, ip address 10.10.50.1/28, eth2, ip address 192.168.80.2/28
-		\item Lalu kita masuk ke ip --> route --> klik add(+), lalu pada Dst.Address isikan 172.16.2.0/24 (ip network client yang ada pada router2) dan pada gateway isikan 10.10.50.2 (ip yang terhubung dari router2 ke router1), klik apply --> ok
-		\item Jika sudah maka akan reachable eth3
-		\item Sekarang kita konfigurasi pada DHCP servernya untuk client yang akan terhubung
-		\item Kita coba untuk ping
+		\item Buka WinBox dan lakukan koneksi ke Router 2
+		\item Berikan IP address pada interface ether2 dan ether 4 yang dapat dibuat pada tab IP > Addresses. Berikan IP address sesuai dengan cara pengaturan IP address yang benar. Berikan IP address yang berbeda dengan contoh di modul.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per1/pc2/Step 2.png}
+			\caption{Step 2}
+			\label{fig:Step 2(Per.1 PC2)}
+		\end{figure}
+		\item Lakukan routing statis. Buka pada tab IP > Routes, lalu tambahkan jaringan. Masukkan alamat jaringan yang ingin dituju, melalui alamat Gateway pada router 1
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per1/pc2/Step 3.png}
+			\caption{Step 3}
+			\label{fig:Step 3(Per.1 PC2)}
+		\end{figure}
 	\end{enumerate}
-\begin{center}
-	\textbf{Konfigurasi Router2}
+
+	\textbf{Mengecek keberhasilan konfigurasi}
+	\begin{enumerate}
+		\item Lakukan tes ping ke Router 2 melalui PC 1
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per1/pc1/Step 4.png}
+			\caption{Step 1}
+			\label{fig:Ping Step 1(Per.1 PC1)}
+		\end{figure}
+		\item Lakukan tes ping ke Router 1 melalui PC 2
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per1/pc2/Step 4.png}
+			\caption{Step 2}
+			\label{fig:Ping Step 2(Per.1 PC2)}
+		\end{figure}
+	\end{enumerate}
 \end{center}
-	\begin{enumerate}
-		\item Seperti langkah diatas kita masuk dulu ke mikrotik dengan winbox
-		\item Setelah masuk kita masuk ke ip --> address lalu kita atur ipnya router 2 eth3, ip address 10.10.50.2/28 eth2, ip address 192.168.80.2/28
-		\item Lalu kita masuk ke ip --> route --> klik add(+), lalu pada Dst.Address isikan 192.168.80.0/28 (ip network client yang ada pada router1) dan pada gateway isikan 10.10.50.1 (ip yang terhubung dari router1 ke router2), klik apply --> ok
-		\item Jika sudah maka akan reachable eth3
-		\item Sekarang kita konfigurasi pada DHCP servernya untuk client yang akan terhubung
-		\item Kita coba ping ke router1
-		\item Tahap terakhir atau penugasan, setting IP Address pada PC client router1 dan router2, kemudian PING IP dari PC router2 ke PC Router2, pastikan berhasil dan lampirkan dalam laporan.
-	\end{enumerate}
 
 \subsection{Routing Dinamis}
 Pada routing dinamis, terdapat setidaknya 3 jenis, yaitu
@@ -93,41 +139,90 @@ Pada kesempatan kali ini, kita akan membuat routing jenis static route, Tahap aw
 ===Gambar===\\Penjelasan dan tahapan konfigurasi sebagai berikut :
 
 \begin{center}
-	\textbf{Konfigurasi Router1}
-\end{center}
-\begin{enumerate}
-	\item Pertama kita buka winbox, lalu buat IP Address klik \textbf{IP > Address.}
-	\item Lalu kita membuat IP Address yang menghubungkan interface router 1 dan router 2, pada konfigurasi ini saya menggunakan interface ether2 sebagai penghubungnya. $\Rightarrow$ \textbf{Address : 172.160.8.1/24 > Interface :} (biarkan kosong) > \textbf{Interface : ether.}
-	\item Langkah selanjutnya kita mengatur IP Address yang terhubung dengan laptop. $\Rightarrow$ \textbf{Address : 192.168.10.1/24 > Interface : ether3 > Apply > Ok.}
-	\item Selanjutnya kita klik \textbf{Routing > RIP.}
-	\item Klik tab \textbf{Interfaces > Add > Interface : ether2} (interface yang menghubungkan antar router) \textbf{> receive : v1 > send : v1 > Apply > Ok.}
-	\item Langkah selanjutnya memasukan semua IP Network ether2 dan ether3. $\Rightarrow$ klik tab \textbf{Networks > Add > Address : 172.160.8.0/24 > Ok.}
-	\item Klik \textbf{Network > Add > Address : 192.160.10.0/24 > Ok.}
-	\item Selanjutnya kita klik tab Neighbours, disini kita memasukan alamat IP tujuan router lawan. Klik \textbf{Add > Address : 172.160.8.2 > Ok.}
-	\item Setelah konfigurasi router 1 selesai, selanjutnya kita konfigurasi IP laptop. $\Rightarrow$ \textbf{Address : 192.168.10.2 > Netmask : 255.255.255.0 > Gateway : 192.168.10.1.}
-\end{enumerate}
+	\textbf{Konfigurasi Router 1}
+	\begin{enumerate}
+		\item Buka WinBox dan lakukan koneksi ke Router 1
+		\item Berikan IP address pada interface ether2 dan ether 4 yang dapat dibuat pada tab IP > Addresses. Berikan IP address sesuai dengan cara pengaturan IP address yang benar Berikan IP address yang berbeda dengan contoh di modul.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per1/pc1/Step 2.png}
+			\caption{Step 2}
+			\label{fig:Step 2(Per.2 PC1)}
+		\end{figure}
+		\item Pada PC 1, lakukan routing dinamis. Buka tab Routing > RIP. 
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc1/Step 3.1.png}
+			\caption{Step 3.1}
+			\label{fig:Step 3.1(Per.2 PC1)}
+		\end{figure}
+		Pada interface tambahkan interface baru kemudian ubah interface menjadi ether 4 dengan Receive dan Send pada v1.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc1/Step 3.2.png}
+			\caption{Step 3.2}
+			\label{fig:Step 3.2(Per.2 PC1)}
+		\end{figure}
+		\item Pada tab Network, tambahkan 2 network baru, yaitu network yang antara PC1 dengan Router 1 dan network antara Router 1 dan Router 2.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc1/Step 4.png}
+			\caption{Step 4}
+			\label{fig:Step 4(Per.2 PC1)}
+		\end{figure}
+		\item Pada tab Neighbours, tambahkan alamat router yang dituju.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc1/Step 5.png}
+			\caption{Step 5}
+			\label{fig:Step 5(Per.2 PC1)}
+		\end{figure}
+	\end{enumerate}
 
-\begin{center}
 	\textbf{Konfigurasi Router2}
-\end{center}
-\begin{enumerate}
-	\item Pertama kita buka winbox, lalu buat IP Address klik \textbf{IP > Address.}
-	\item Lalu kita membuat IP Address yang menghubungkan interface router 1 dan router 2, pada konfigurasi ini saya menggunakan interface ether2 sebagai penghubungnya $\Rightarrow$ \textbf{Address : 172.160.8.2/24 > Interface : ether2 > Apply > Ok.}
-	\item Langkah selanjutnya kita mengatur IP Address yang terhubung dengan laptop. $\Rightarrow$ \textbf{Address : 192.168.20.2/24 > Interface : ether3 > Apply > Ok.}
-	\item Selanjutnya kita klik \textbf{Routing > RIP.}
-	\item Klik tab \textbf{Interfaces > Add > Interface : ether2} (interface yang menghubungkan antar router) \textbf{> receive : v1 > send : v1 > Apply > Ok.}
-	\item Langkah selanjutnya memasukan semua IP Network ether2 dan ether3 $\Rightarrow$ klik tab \textbf{Networks > Add > Address : 172.160.8.0/24 > Ok.}
-	\item $\Rightarrow$ \textbf{Klik Network > Add > Address : 192.160.20.0/24 > Ok.}
-	\item Selanjutnya kita klik tab Neighbours, disini kita memasukan alamat IP tujuan router lawan. Klik \textbf{Add > Address : 172.160.8.1 > Ok.}
-	\item Setelah konfigurasi router 1 selesai, selanjutnya kita konfigurasi IP laptop. $\Rightarrow$ \textbf{Address : 192.168.20.3 > Netmask : 255.255.255.0 > Gateway : 192.168.20.2.}
-\end{enumerate}
+	\begin{enumerate}
+		\item Buka WinBox dan lakukan koneksi ke Router 2
+		\item Berikan IP address pada interface ether2 dan ether 4 yang dapat dibuat pada tab IP > Addresses. Berikan IP address sesuai dengan cara pengaturan IP address yang benar. Berikan IP address yang berbeda dengan contoh di modul.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per1/pc2/Step 2.png}
+			\caption{Step 2}
+			\label{fig:Step 2(Per.2 PC2)}
+		\end{figure}
+		\item Pada tab Network, tambahkan 2 network baru, yaitu network yang antara PC2 dengan Router 2 dan network antara Router 1 dan Router 2.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc2/Step 4.png}
+			\caption{Step 3}
+			\label{fig:Step 3(Per.2 PC2)}
+		\end{figure}
+		\item Pada tab Neighbours, tambahkan alamat router yang dituju.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc2/Step 5.png}
+			\caption{Step 4}
+			\label{fig:Step 4(Per.2 PC2)}
+		\end{figure}
+	\end{enumerate}
 
-\begin{center}
 	\textbf{Pengujian Konfigurasi}
+	\begin{enumerate}
+		\item Lakukan tes ping Router 2 dari PC 1
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc1/Step 6.png}
+			\caption{Step 1}
+			\label{fig:Ping Step 1(Per.2 PC1)}
+		\end{figure}
+		\item Lakukan tes ping Router 1 dari PC 2
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc2/Step 6.png}
+			\caption{Step 2}
+			\label{fig:Ping Step 2(Per.2 PC2)}
+		\end{figure}
+	\end{enumerate}
 \end{center}
-Untuk mengetes apakah konfigurasi telah berhasil atau belum dapat dilakukan dengan melakukan ping masing - masing IP Address laptop lawan.\\
-==Gambar==\\==Gambar==\\
-Apabila masing - masing Laptop mendapatkan jawaban selamat konfigurasi berhasil.
 
 %===========================================================%
 \section{Hasil yang didapat}
@@ -137,5 +232,4 @@ Memahami dan mengkonfigurasi routing dinamis RIP dengan tepat.
 \section{Kesimpulan}
 Dalam mengkonfigurasi routing RIP, diperlukan pemahaman dasar mengenai setting IP Address dan Subnetting, dan juga diperlukan ketelitian dan fokus agar berhasil
 
-\cite{Newton1687}.
 
