@@ -114,14 +114,14 @@ Pada routing statis, terdapat setidaknya 2 jenis, yaitu
 
 	\textbf{Pengujian konfigurasi}
 	\begin{enumerate}
-		\item Lakukan tes ping ke Router 2 melalui PC 1
+		\item Lakukan tes ping ke Router 2 melalui Router 1
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.9\linewidth]{P2/img/per1/pc1/Step 4.png}
 			\caption{Step 1}
 			\label{fig:Ping Step 1(Per.1 PC1)}
 		\end{figure}
-		\item Lakukan tes ping ke Router 1 melalui PC 2
+		\item Lakukan tes ping ke Router 1 melalui Router 2
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.9\linewidth]{P2/img/per1/pc2/Step 4.png}
@@ -191,12 +191,19 @@ Pada routing dinamis, terdapat setidaknya 3 jenis, yaitu
 			\caption{Step 2}
 			\label{fig:Step 2(Per.2 PC2)}
 		\end{figure}
+		\item Pada interface tambahkan interface baru kemudian ubah interface menjadi ether 4 dengan Receive dan Send pada v1.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc1/Step 3.2.png}
+			\caption{Step 3.1}
+			\label{fig:Step 3.1(Per.2 PC2)}
+		\end{figure}
 		\item Pada tab Network, tambahkan 2 network baru, yaitu network yang antara PC2 dengan Router 2 dan network antara Router 1 dan Router 2.
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc2/Step 4.png}
-			\caption{Step 3}
-			\label{fig:Step 3(Per.2 PC2)}
+			\caption{Step 3.2}
+			\label{fig:Step 3.2(Per.2 PC2)}
 		\end{figure}
 		\item Pada tab Neighbours, tambahkan alamat router yang dituju.
 		\begin{figure}[H]
@@ -209,14 +216,14 @@ Pada routing dinamis, terdapat setidaknya 3 jenis, yaitu
 
 	\textbf{Pengujian Konfigurasi}
 	\begin{enumerate}
-		\item Lakukan tes ping Router 2 dari PC 1
+		\item Lakukan tes ping dari Router 2 ke Router 1
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc1/Step 6.png}
 			\caption{Step 1}
 			\label{fig:Ping Step 1(Per.2 PC1)}
 		\end{figure}
-		\item Lakukan tes ping Router 1 dari PC 2
+		\item Lakukan tes ping dari Router 1 ke Router 2
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.9\linewidth]{P2/img/per2/pc2/Step 6.png}
