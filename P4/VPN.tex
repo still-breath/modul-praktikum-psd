@@ -87,101 +87,122 @@ Pemahaman dan konfigurasi 1 jam.
 			\caption{Step 4}
 			\label{fig:Step 4(PC 1)}
 		\end{figure}
-        \item Buat PPTP untuk client pada tab Secret, dengan konfigurasi Nama “PPTP”, Password “123456”, Service “pptp”, Profile “default”. Local Address adalah IP address tunnel pada sisi server, diisi dengan “10.10.10.2”. Remote Address adalah IP yang akan Client dapatkan, diisi dengan “10.10.10.3”. Pastikan Local Address dan Remote Address berada pada satu jaringan yang sama.
+        \item Lakukan tes ping antara Router dengan PC1, untuk memastikan PC1 dan Router sudah terkoneksi.
         \begin{figure}[H]
 			\centering
 			\includegraphics[width=0.8\linewidth]{P4/img/pc1/Step 5.png}
 			\caption{Step 5}
 			\label{fig:Step 5(PC 1)}
 		\end{figure}
-        \item Lakukan tes ping ke alamat Remote Address Router 2 untuk memastikan kedua Router sudah terhubung.
-        \begin{figure}[H]
-			\centering
-			\includegraphics[width=0.8\linewidth]{P4/img/pc1/Step 5.1.png}
-			\caption{Step 6}
-			\label{fig:Step 6(PC 1)}
-		\end{figure}
-        \item Lakukan routing statis agar kedua PC dapat berkomunikasi. Buka pada tab IP > Routes, lalu tambahkan jaringan. Masukkan alamat jaringan yang ingin dituju, melalui alamat Gateway pada router 2
+        \item Buat PPTP Server pada tab interface, dengan Default Profile “default -encryption”.
         \begin{figure}[H]
 			\centering
 			\includegraphics[width=0.8\linewidth]{P4/img/pc1/Step 6.png}
-			\caption{Step 7}
-			\label{fig:Step 7(PC 1)}
+			\caption{Step 6}
+			\label{fig:Step 6(PC 1)}
 		\end{figure}
-        \item Lakukan tes ping ke ke PC 2 untuk memastikan kedua PC sudah terhubung.
+        \item Buat PPTP untuk client pada tab Secret, dengan konfigurasi Nama “PPTP”, Password “123456”, Service “pptp”, Profile “default”. Local Address adalah IP address tunnel pada sisi server, diisi dengan “10.10.10.2”. Remote Address adalah IP yang akan Client dapatkan, diisi dengan “10.10.10.3”. Pastikan Local Address dan Remote Address berada pada satu jaringan yang sama.
         \begin{figure}[H]
 			\centering
 			\includegraphics[width=0.8\linewidth]{P4/img/pc1/Step 7.png}
+			\caption{Step 7}
+			\label{fig:Step 7(PC 1)}
+		\end{figure}
+        \item Lakukan routing statis untuk menghubungkan PC1 dengan Internet. Buka pada tab IP > Routes, lalu tambahkan jaringan. Masukkan alamat jaringan yang ingin dituju, melalui alamat Gateway pada router 1
+        \begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth]{P4/img/pc1/Step 8.png}
 			\caption{Step 8}
 			\label{fig:Step 8(PC 1)}
 		\end{figure}
+		\item Agar PC yang berada pada jaringan lokal dapat terhubung ke jaringan publik, dapat digunakan layanan NAT (Network Address Translation) yang akan menerjemahkan IP lokal beserta port perangkat agar dapat terhubung dengan jaringan publik. IP > Klik Firewall.
+        \begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth]{P4/img/pc1/Step 16.png}
+			\caption{Step 9}
+			\label{fig:Step 9(PC 1)}
+		\end{figure}
+		\item Buat NAT baru. Klik tab NAT > Tambahkan NAT > Pada Opsi Chain pilih srcnat > Pilih Out Interface yaitu port pada Router yang terhubung dengan Internet(ether6) > Klik Apply. Tambahkan Action pada tab Action. Pada Opsi Action pilih masquerade > Klik Apply > Klik OK.
+        \begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\linewidth]{P4/img/pc1/Step 15.png}
+			\caption{Step 10.1}
+			\label{fig:Step 10.1(PC 1)}
+        \end{figure}
+        \begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth]{P4/img/pc1/Step 14.png}
+			\caption{Step 10.2}
+			\label{fig:Step 10.2(PC 1)}
+		\end{figure}	
     \end{enumerate}
+	\textbf{Pengujian Konfigurasi}
+	\begin{enumerate}
+		\item Lakukan tes ping ke alamat Remote Address Router 2 untuk memastikan kedua Router sudah terhubung.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth]{P4/img/pc1/Step 9.png}
+			\caption{Step 1}
+			\label{fig:Ping Step 1(PC 1)}
+		\end{figure}
+		\item Lakukan tes ping ke PC 2 untuk memastikan kedua PC sudah terhubung.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth]{P4/img/pc1/Step 10.png}
+			\caption{Step 2}
+			\label{fig:Ping Step 2(PC 1)}
+		\end{figure}
+	\end{enumerate}
 
     \textbf{Konfigurasi PC 2}
     \begin{enumerate}
-        \item Buka aplikasi Winbox pada PC dan lakukan hubungkan ke Router. Pastikan Login terisi “admin”, Klik Neighbors > Klik Refresh > Pilih Router yang ingin disambungkan > Klik Connect.
+        \item Hubungkan PC2 dengan Internet, bisa dilakukan menggunakan wifi ITS.
         \begin{figure}[H]
 			\centering
 			\includegraphics[width=0.5\linewidth]{P4/img/pc2/Step 1.png}
 			\caption{Step 1}
 			\label{fig:Step 1(PC 2)}
 		\end{figure}
-        \item Jadikan Router menjadi DHCP Client agar bisa mendapat IP address dari Internet ITS. IP > Klik DHCP Client > Tambahkan DHCP Client > Pilih interface yang terhubung dengan Internet (ether2)> Klik Apply > Klik OK. Kita bisa memastikan koneksi ke internet dengan cara melakukan tes ping ke alamat IP 8.8.8.8
+        \item Cek IP yang diterima PC2 dari ITS.
         \begin{figure}[H]
 			\centering
-			\includegraphics[width=0.5\linewidth]{P4/img/pc2/Step 2.1.png}
-			\caption{Step 2.1}
-			\label{fig:Step 2.1(PC 2)}
+			\includegraphics[width=0.5\linewidth]{P4/img/pc2/Step 2.png}
+			\caption{Step 2}
+			\label{fig:Step 2(PC 2)}
         \end{figure}
-        \begin{figure}[H]
-			\centering
-			\includegraphics[width=0.8\linewidth]{P4/img/pc2/Step 2.2.png}
-			\caption{Step 2.2}
-			\label{fig:Step 2.2(PC 2)}
-		\end{figure}
-        \item Buat IP address baru pada Router 2 untuk menghubungkan PC 2 dengan Router 2. Tambahkan IP address > Isi address > Pilih Interface yang terhubung ke PC (ether4) > Klik Apply > Klik OK.
+        \item Masuk ke dalam setting PC2 dan klik VPN.
         \begin{figure}[H]
 			\centering
 			\includegraphics[width=0.8\linewidth]{P4/img/pc2/Step 3.png}
 			\caption{Step 3}
 			\label{fig:Step 3(PC 2)}
 		\end{figure}
-        \item Atur IP pada PC 2 dengan mengubah pengaturan pada setting ethernet. Ubah IP perangkat yang otomatis menjadi manual, pastikan IP PC 2 masih satu jaringan dengan IP lokal yang diinginkan, isi Gateway dengan IP address Router 2 yang tersambung dengan PC 2. Berikan IP address yang berbeda dengan contoh yang ada di modul.
+        \item Hubungkan client PPTP dengan server PPTP, untuk melakukan hal tersebut, buatlah koneksi VPN baru antara PC2 dengan Host Server. Pastikan menggunakan VPN type PPTP. Pastikan Username dan password sudah sesuai dengan konfigurasi Router1.
         \begin{figure}[H]
 			\centering
 			\includegraphics[width=0.8\linewidth]{P4/img/pc2/Step 4.png}
 			\caption{Step 4}
 			\label{fig:Step 4(PC 2)}
 		\end{figure}
-        \item Hubungkan client PPTP dengan server PPTP, untuk melakukan hal tersebut, buatlah PPTP Client baru kemudian konfigurasi koneksi pada tab Dial Out, dengan konfigurasi Connect To “10.3.142.134”, Connect To adalah IP address pada Router 1 yang terhubung ke internet. konfigurasi Nama “PPTP”, Password “123456”, Profile “default-encryption”. Pastikan Nama dan Password sesuai dengan yang sudah di buat.
+        \item Hubungkan ke VPN dengan cara klik tombol Connect
         \begin{figure}[H]
 			\centering
 			\includegraphics[width=0.8\linewidth]{P4/img/pc2/Step 5.png}
 			\caption{Step 5}
 			\label{fig:Step 5(PC 2)}
 		\end{figure}
-        \item Lakukan tes ping ke alamat Local Address Router 1 untuk memastikan kedua Router sudah terhubung.
-        \begin{figure}[H]
-			\centering
-			\includegraphics[width=0.8\linewidth]{P4/img/pc2/Step 5.1.png}
-			\caption{Step 6}
-			\label{fig:Step 6(PC 2)}
-		\end{figure}
-        \item Lakukan routing statis agar kedua PC dapat berkomunikasi. Buka pada tab IP > Routes, lalu tambahkan jaringan. Masukkan alamat jaringan yang ingin dituju, melalui alamat Gateway pada router 2
-        \begin{figure}[H]
+    \end{enumerate}
+
+	\textbf{Pengujian Konfigurasi}
+	\begin{enumerate}
+		\item Lakukan tes ping ke alamat PC1 untuk memastikan VPN PPTP sudah terhubung.
+		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.8\linewidth]{P4/img/pc2/Step 6.png}
-			\caption{Step 7}
-			\label{fig:Step 7(PC 2)}
+			\caption{Step 1}
+			\label{fig:Ping Step 1(PC 2)}
 		\end{figure}
-        \item Lakukan tes ping ke ke PC 1 untuk memastikan kedua PC sudah terhubung.
-        \begin{figure}[H]
-			\centering
-			\includegraphics[width=0.8\linewidth]{P4/img/pc2/Step 7.png}
-			\caption{Step 8}
-			\label{fig:Step 8(PC 2)}
-		\end{figure}
-    \end{enumerate}
+	\end{enumerate}
 \end{center}
 
 %===========================================================%
