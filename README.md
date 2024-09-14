@@ -1,18 +1,18 @@
-# Modul Praktikum Dasar Pemrograman
+# Modul Praktikum Pengolahan Sinyal Digital
 
 <img src="https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2018/03/image10.png" alt="Teknik Komputer ITS" width="150" height="150">
 
 ## Deskripsi
 
-Modul Praktikum Jaringan Komputer ini disusun untuk membantu mahasiswa memahami konsep dasar jaringan komputer dan teknologi informasi. Modul ini berisi materi-materi yang disampaikan dalam perkuliahan dan dilengkapi dengan latihan-latihan praktis yang harus dikerjakan oleh mahasiswa.
+Modul Praktikum Pengolahan Sinyal Digital ini disusun untuk membantu mahasiswa memahami konsep dasar memproses sinyal dalam bentuk digital. Modul ini berisi materi-materi yang disampaikan dalam perkuliahan dan dilengkapi dengan latihan-latihan praktis yang harus dikerjakan oleh mahasiswa.
 
 ## Isi Modul
 
-1. **Wireless**
-2. **Routing Statis dan Dinamis**
-3. **Manajemen Bandwith**
-4. **Routing Statis dan Dinamis**
-5. **IPv6**
+1. **Intro: Function Generator dan Osiloskop**
+2. **ADC: Analog to Digital Converter**
+3. **DAC: Digital to Analog Converter**
+4. **Digital Filter**
+5. **Fourier Transform**
 
 ## Panduan Penggunaan
 
@@ -32,7 +32,7 @@ Modul Praktikum Dasar Pemrograman ini dilisensikan di bawah [lisensi MIT](LICENS
 
 ---
 
-Dengan menggunakan modul ini, kami harap Anda dapat memahamijaringan komputer. Selamat belajar!
+Dengan menggunakan modul ini, kami harap Anda dapat memahami Pengolahan Sinyal Digital. Selamat belajar!
 
 Jika Anda memiliki pertanyaan atau masukan, silakan hubungi admin
 

@@ -1,4 +1,5 @@
 \documentclass[titlepage,11pt]{article}
+\usepackage[utf8]{inputenc}  % Load inputenc first
 \usepackage{comment}
 \usepackage{enumitem}
 \usepackage{listings}
@@ -16,6 +17,7 @@
 	colorlinks=true,
 ]{hyperref}
 \usepackage[a4paper,left=2cm,right=2cm]{geometry}
+\usepackage{csquotes}
 % Pengaturan kutipan artikel
 \usepackage[style=ieee, backend=biber]{biblatex}
 %Code listing style pak akok
@@ -26,9 +28,9 @@
 
 % Ubah sesuai modul
 % \addbibresource{P1/pustaka/pustaka.bib}
-\addbibresource{P2/pustaka/pustaka.bib}
+% \addbibresource{P2/pustaka/pustaka.bib}
 % \addbibresource{P3/pustaka/pustaka.bib}
-% \addbibresource{P4/pustaka/pustaka.bib}
+\addbibresource{P4/pustaka/pustaka.bib}
 % \addbibresource{P5/pustaka/pustaka.bib}
 
 \lstdefinestyle{mystyle}{
@@ -75,7 +77,7 @@
 % \def\judul{Routing Static dan Routing Dinamis (Mikrotik)}
 % \def\judul{Mengelola dan Membagi Bandwith menggunakan Qos(Simple Queue)}
 \def\judul{VPN(Virtual Private Network) PPTP Pada Mikrotik}
-% \def\judul{Implemntasi dan Konfigurasi IP Version 6}
+% \def\judul{Implementasi dan Konfigurasi IP Version 6}
 \def\tahun{2024}
 \begin{document}
 % Ubah Bahasa sesuai dengan keinginan
